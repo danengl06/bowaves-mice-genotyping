@@ -29,11 +29,12 @@ def si_vq(X,Y,metric):
     return best_argmins, best_shifts, best_distances
 
 
+# Changed sign_invarient code -------------
 def si2_vq(X,Y,metric):
     n, M = X.shape
     L = Y.shape[1]
-    best_labels_b, best_shifts, best_distances = my_si_vq(X,np.vstack((Y,-Y)), metric, squared_norms)
+    best_labels_b, best_shifts, best_distances = si_vq(X,np.vstack((Y,-Y)), metric)
     best_signs = np.where(best_labels_b//2 == 0, np.ones_like(best_shifts), np.full_like(best_shifts, -1))
     n_centroids = Y.shape[0]
     best_labels = best_labels_b % n_centroids
-    return best_argmins, best_shifts, best_distances, best_signs
+    return best_labels, best_shifts, best_distances, best_signs
