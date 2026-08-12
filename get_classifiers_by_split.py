@@ -238,7 +238,7 @@ def consolidate_counts(test_fold, split,param_string, n_segments):
     strains = ('BXD87', 'DBA2', 'C57B6')  # tsc
     tscs = ('Het', 'WT')  # genotype
     print('Starting consolidate counts', test_fold, split)
-    for train_valid_test in ['train','valid', 'test']:
+    for train_valid_test in ['valid', 'test']:
         segment_filename = "data/hpc_segment_info_" + train_valid_test + "_" + str(n_segments) + "_" + str(split) + str(test_fold) + param_string + ".pickle"
         count_filename = "data/hpc_count_" + train_valid_test + "_" + str(n_segments) + str(split) + str(test_fold) + param_string + ".pickle"
         try:
