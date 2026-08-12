@@ -320,6 +320,9 @@ if __name__ == '__main__':
     parser.add_argument('--sign_invariant', dest='use_sign_invariant', action='store_true')
     parser.add_argument('--sphere', dest='use_sphere', action='store_true')
     parser.set_defaults(use_sphere=False)
+    parser.add_argument('--svd', dest='use_svd', action='store_true')
+    parser.set_defaults(use_svd=False)
+
     args = parser.parse_args()
 
     split = args.split
@@ -343,12 +346,18 @@ if __name__ == '__main__':
     else:
         str_sph = ''
 
+    if args.use_svd:
+        str_svd = '_svd'
+    else:
+        str_svd = ''
+
+
     if args.use_spectral:
         nfft = args.centroid_length_s
         str_nfft = '' if nfft == 1 else '_'+str(nfft)
         dict_param_string = 'spectral' + '_' + str(n_windows) + '_' + str(window_length) + '_' + str(n_centroids) + str_nfft
     else:
-        dict_param_string = str(n_windows) + '_' + str(window_length) + '_' + str(n_centroids) + '_' + str(centroid_len) + str_si+str_sph
+        dict_param_string = str(n_windows) + '_' + str(window_length) + '_' + str(n_centroids) + '_' + str(centroid_len) + str_si+str_sph+ str_svd
 
     if args.use_l1:
         reg_type = 'l1'
